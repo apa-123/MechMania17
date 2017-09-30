@@ -40,6 +40,7 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
     /*^^^^ DO NOT MODIFY ^^^^*/
 
     /* Your code below this line */
+
     // Update() is called every frame
     void Update()
 	{
@@ -111,8 +112,9 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
     {
         
     }
+    //Agresssive attacc Charachter
     void Char3()
     {
-        
+        Debug.Log(visibleEnemyLocations);
     }
 }
