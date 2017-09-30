@@ -100,4 +100,16 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
         }
 
     } 
+    void Char1()
+    {
+
+    }
+    void Char2()
+    {
+        
+    }
+    void Char3()
+    {
+        
+    }
 }
