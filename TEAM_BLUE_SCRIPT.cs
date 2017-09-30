@@ -44,9 +44,6 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
     // Update() is called every frame
     void Update()
 	{
-        Char1();
-        Char2();
-        Char3();
          //Set caracter loadouts, can only happen when the characters are at base.
         if (character1.getZone() == zone.BlueBase || character1.getZone() == zone.RedBase)
             character1.setLoadout(loadout.LONG);
@@ -110,6 +107,21 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
     }
     void Char2()
     {
+        if (rightObjective.getControllingTeam() != character2.getTeam())
+        {
+            character2.MoveChar(rightObjective.transform.position);
+            character2.SetFacing(rightObjective.transform.position);
+        }
+        if (middleObjective.getControllingTeam() != character.getTeam())
+        {
+            character2.MoveChar(middleObjective.transform.position);
+            character2.SetFacing(middleObjective.transform.position);
+        }
+        if (rightObjective.getControllingTeam() = character2.getTeam()) && if(rightObjective.getControllingTeam() = character2.getTeam());
+        {
+            character2.FindClosestCover();
+            character2.isDoneMoving();
+        }
         
     }
     //Agresssive attacc Charachter
