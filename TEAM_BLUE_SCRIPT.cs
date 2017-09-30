@@ -132,8 +132,8 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
         // send other two to capture
         if (middleObjective.getControllingTeam() != character1.getTeam())
         {
-            character.MoveChar(leftObjective.transform.position);
-            character.SetFacing(leftObjective.transform.position);
+            character.MoveChar(rightObjective.transform.position);
+            character.SetFacing(rightObjective.transform.position);
             if (character.attackedFromLocations.Capacity != 0)
             {
                 character.FindClosestCover(character.attackedFromLocations[0]);
@@ -141,18 +141,20 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
         }
         else
         {
-            // Then left
-            if (leftObjective.getControllingTeam() != character1.getTeam())
-            {
-                character.MoveChar(leftObjective.transform.position);
-                character.SetFacing(leftObjective.transform.position);
-            }
             // Then RIght
             if (rightObjective.getControllingTeam() != character1.getTeam())
             {
                 character.MoveChar(rightObjective.transform.position);
                 character.SetFacing(rightObjective.transform.position);
             }
+            // Then left
+            if (leftObjective.getControllingTeam() != character1.getTeam())
+            {
+                character.MoveChar(leftObjective.transform.position);
+                character.SetFacing(leftObjective.transform.position);
+            }
+            
+            
         }
     }
 }
