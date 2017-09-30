@@ -135,22 +135,14 @@ public class marker : MonoBehaviour
     //Agresssive attacc Charachter
     void Char3()
     {
-        if(character3.visibleEnemyLocations.Count==0) {
-           character3.rotateAngle(80.0f);
-        } else {
-            Debug.Log(character3.visibleEnemyLocations.Count);
-            character3.SetFacing(character3.visibleEnemyLocations[character3.visibleEnemyLocations.Count-1]);
-        }
         if(goToNearItem(character3)) {
 
         }
         else {
             character3.MoveChar(middleObjective.transform.position);
-            //character3.SetFacing(middleObjective.transform.position);
+            character3.SetFacing(middleObjective.transform.position);
         }
     }
-
-
     void sendToCapture(CharacterScript character) 
     {
         // send other two to capture
@@ -190,7 +182,6 @@ public class marker : MonoBehaviour
         }
         return false;
     }
-    
 }
 
 /*
