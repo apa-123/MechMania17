@@ -41,6 +41,7 @@ public class marker : MonoBehaviour
 
     /* Your code below this line */
     bool char1HasMoved = false;
+    bool inPosition = false;
     // Update() is called every frame
     void Update()
 	{
@@ -155,11 +156,30 @@ public class marker : MonoBehaviour
         */
     }
     //Agresssive attacc Charachter
+    //bool clockwise = false;
+    
     void Char3()
     {
-        if(character3.visibleEnemyLocations.Count==0) {
+        if(!goToNearItem(character3)) {
+            if(character3.visibleEnemyLocations.Count>0) {
+                character3.MoveChar(character3.FindClosestCover(character3.visibleEnemyLocations[character3.visibleEnemyLocations.Count-1]));
+                character3.SetFacing(character3.visibleEnemyLocations[character3.visibleEnemyLocations.Count-1]);
+            } else {
+                character3.MoveChar(middleObjective.transform.position);
+                character3.rotateAngle(80.0f);
+            }
+        }
+        /*
+        if(character3.visibleEnemyLocations.Count>0) {
+            character3.FindClosestCover(character3.visibleEnemyLocations[character3.visibleEnemyLocations.Count-1]);
+        }
+        if(character3.visibleEnemyLocations.Count==0 && !inPosition) {
            character3.rotateAngle(80.0f);
         } else {
+            if(inPosition) {
+                //Vector3 offset = new Vector3(-30.0f,0.0f,10.0f);
+                character3.SetFacing(character3.getPrefabObject().transform.position+offset);
+            }
             //Debug.Log(character3.visibleEnemyLocations.Count);
             //character3.SetFacing(character3.visibleEnemyLocations[character3.visibleEnemyLocations.Count-1]);
         }
@@ -167,10 +187,16 @@ public class marker : MonoBehaviour
 
         }
         else {
-            Vector3 offset = new Vector3(-35.0f,10.0f,10.0f);
+            
+            Vector3 offset = new Vector3(0.0f,0.0f,20.0f);
             character3.MoveChar(middleObjective.transform.position + offset);
+            if(Vector3.Distance(character3.getPrefabObject().transform.position,middleObjective.transform.position + offset)<2) {
+                //inPosition=true;
+            }
+
             //character3.SetFacing(middleObjective.transform.position);
         }
+        */
     }
 
 

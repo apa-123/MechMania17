@@ -57,6 +57,7 @@ public class TEAM_RED_SCRIPT : MonoBehaviour
 
     void Update()
     {
+        
         //Set caracter loadouts, can only happen when the characters are at base.
         if (character1.getZone() == zone.BlueBase || character1.getZone() == zone.RedBase)
             character1.setLoadout(loadout.LONG);
@@ -110,6 +111,7 @@ public class TEAM_RED_SCRIPT : MonoBehaviour
                 character3.SetFacing(rightObjective.transform.position);
             }
         }
+        
     }
 
     // a simple function to track game time
