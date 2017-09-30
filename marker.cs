@@ -5,16 +5,16 @@ using UnityEngine;
 
 
 //---------- CHANGE THIS NAME HERE -------
-public class TEAM_BLUE_SCRIPT : MonoBehaviour
+public class marker : MonoBehaviour
 {
     public ObjectiveScript middleObjective;
     public ObjectiveScript leftObjective;
     public ObjectiveScript rightObjective;
     public float timer = 0;
     //---------- CHANGE THIS NAME HERE -------
-    public static TEAM_BLUE_SCRIPT AddYourselfTo(GameObject host) {
+    public static marker AddYourselfTo(GameObject host) {
         //---------- CHANGE THIS NAME HERE -------
-        return host.AddComponent<TEAM_BLUE_SCRIPT>();
+        return host.AddComponent<marker>();
     }
 
     /*vvvv DO NOT MODIFY vvvvv*/
