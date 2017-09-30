@@ -185,7 +185,8 @@ public class marker : MonoBehaviour
                 character3.MoveChar(character3.FindClosestCover(character3.visibleEnemyLocations[character3.visibleEnemyLocations.Count-1]));
                 character3.SetFacing(character3.visibleEnemyLocations[character3.visibleEnemyLocations.Count-1]);
             } else {
-                character3.MoveChar(middleObjective.transform.position);
+                Vector3 offset = new Vector3(-30.0f,0.0f,10.0f);
+                character3.MoveChar(middleObjective.transform.position+offset);
                 character3.rotateAngle(80.0f);
             }
         }
