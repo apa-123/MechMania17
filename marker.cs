@@ -59,6 +59,7 @@ public class marker : MonoBehaviour
     */
     void basicUpdate(CharacterScript character)
     {
+
          //Set caracter loadouts, can only happen when the characters are at base.
         
         // in the first couple of seconds we just scan around
@@ -72,9 +73,10 @@ public class marker : MonoBehaviour
     {   
 
         //set loadout
+        character1.MoveChar(leftObjective.transform.position);
         if (character1.getZone() == zone.BlueBase || character1.getZone() == zone.RedBase)
         {
-            character1.setLoadout(loadout.SHORT);
+            character1.setLoadout(loadout.MEDIUM);
         }
         character1.FaceClosestWaypoint();
 
@@ -85,14 +87,32 @@ public class marker : MonoBehaviour
         {
             character1.MoveChar(leftObjective.transform.position);
             character1.SetFacing(leftObjective.transform.position);
+            //Vector3 offset = new Vector3(10.0f,10.0f,10.0f);
+            //character1.FindClosestCover(offset);
+            //character1.MoveChar(leftObjective.transform.position + offset);
+            //character3.SetFacing(middleObjective.transform.position);
             //finds closest cover regardless of whether it is attacked or not
             //if(character1.attackedFromLocations.Count>0) 
             //character1.FindClosestCover(character1.attackedFromLocations[0]);
         }
-        else {
+        //if (character1.attackedFromLocations.Capacity == 0)
+        {
+           // character1.MoveChar(new Vector3(-8.8f, 1.5f, 13.5f));
+           // character1.SetFacing(leftObjective.transform.position);
+        }
+        //else
+        {
+             //   //Vector3 bla = new Vector3(10.0f,10.0f,10.0f);
+          //      character1.MoveChar(character1.FindClosestCover(visibleEnemyLocations));
+        }
+        //else {
+          //  Vector3 offset = new Vector3(10.0f,10.0f,10.0f);
+           // character1.FindClosestCover(offset);
+            //Vector3 offset = new Vector3(10.0f,10.0f,10.0f);
+            //character1.MoveChar(leftObjective.transform.position + offset);
             //character1.FindClosestCover(character1.attackedFromLocations[0]);
 
-        }
+        //}
             /**if(character1.attackedFromLocations.Count>0) 
             {
                 character1.FindClosestCover(character1.attackedFromLocations[0]);
