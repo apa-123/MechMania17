@@ -86,10 +86,10 @@ public class marker : MonoBehaviour
             character1.SetFacing(leftObjective.transform.position);
             //finds closest cover regardless of whether it is attacked or not
             //if(character1.attackedFromLocations.Count>0) 
-            character1.FindClosestCover(character1.attackedFromLocations[0]);
+            //character1.FindClosestCover(character1.attackedFromLocations[0]);
         }
         else {
-            character1.FindClosestCover(character1.attackedFromLocations[0]);
+            //character1.FindClosestCover(character1.attackedFromLocations[0]);
 
         }
             /**if(character1.attackedFromLocations.Count>0) 
@@ -122,6 +122,7 @@ public class marker : MonoBehaviour
                 }
 
         }
+        */
     }
     void Char2()
     {
