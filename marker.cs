@@ -68,7 +68,20 @@ public class marker : MonoBehaviour
     }
 
     void Char1()
-    {
+    {   
+        //depnding on  how close the enemy is either stops or continues rotating 
+        foreach(Vector3 x in character1.visibleEnemyLocations)
+        {
+                if(Vector3.Distance(character1.getPrefabObject().transform.position, x)<5)
+                {
+
+                }
+                else {
+                    character1.rotateAngle(120.0f);
+                    character1.MoveChar(leftObjective.transform.position);
+                }
+
+        }
         //set loadout
         if (character1.getZone() == zone.BlueBase || character1.getZone() == zone.RedBase)
         {
@@ -76,7 +89,6 @@ public class marker : MonoBehaviour
         }
         character1.FaceClosestWaypoint();
 
-        character1.isDoneMoving();
         if(goToNearItem(character1)) {
 
         }
@@ -84,7 +96,13 @@ public class marker : MonoBehaviour
         {
             character1.MoveChar(leftObjective.transform.position);
             character1.SetFacing(leftObjective.transform.position);
-            if(character1.attackedFromLocations.Count>0) 
+            //finds closest cover regardless of whether it is attacked or not
+            character1.FindClosestCover(character1.attackedFromLocations[0]);
+        }
+        else {
+
+        }
+            /**if(character1.attackedFromLocations.Count>0) 
             {
                 character1.FindClosestCover(character1.attackedFromLocations[0]);
             }
