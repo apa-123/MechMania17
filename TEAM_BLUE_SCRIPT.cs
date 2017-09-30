@@ -43,26 +43,33 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
     // Update() is called every frame
     void Update()
 	{
+        basicUpdate(character1);
+        basicUpdate(character2);
+        basicUpdate(character3);
         Char1();
         Char2();
         Char3();
+        
+
+    } 
+    void basicUpdate(CharacterScript character)
+    {
          //Set caracter loadouts, can only happen when the characters are at base.
-        if (character1.getZone() == zone.BlueBase || character1.getZone() == zone.RedBase)
-            character1.setLoadout(loadout.LONG);
-        if (character2.getZone() == zone.BlueBase || character2.getZone() == zone.RedBase)
-            character2.setLoadout(loadout.LONG);
-        if (character2.getZone() == zone.BlueBase || character2.getZone() == zone.RedBase)
-            character3.setLoadout(loadout.LONG);
+        if (character.getZone() == zone.BlueBase || character.getZone() == zone.RedBase)
+            character.setLoadout(loadout.LONG);
+        
 
         // in the first couple of seconds we just scan around
         if (timer < 10)
         {
-            character1.FaceClosestWaypoint();
-            character2.FaceClosestWaypoint();
-            character3.FaceClosestWaypoint();
-            character1.MoveChar(new Vector3(-8.8f, 1.5f, 13.5f));
+            character.FaceClosestWaypoint();
         }
-        // place sniper in position, run to cover if attacked
+        
+        
+    }
+    void Char1()
+    {
+       // place sniper in position, run to cover if attacked
         if (character1.attackedFromLocations.Capacity == 0)
         {
             character1.MoveChar(new Vector3(-8.8f, 1.5f, 13.5f));
@@ -71,49 +78,58 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
         else
         {
             character1.MoveChar(character1.FindClosestCover(character1.attackedFromLocations[0]));
-        }
+        } 
+    }
+    void Char2()
+    {
+        sendToCapture(character2);
+    }
+    //Agresssive attacc Charachter
+    void Char3()
+    {
+        sendToCapture(character3);
+    }
+    void sendToCapture(CharacterScript character) 
+    {
         // send other two to capture
         if (middleObjective.getControllingTeam() != character1.getTeam())
         {
-            character2.MoveChar(leftObjective.transform.position);
-            character2.SetFacing(leftObjective.transform.position);
-            character2.FindClosestCover();
-            character3.MoveChar(rightObjective.transform.position);
-            character3.SetFacing(rightObjective.transform.position);
-            character3.FindClosestCover();
+            character.MoveChar(leftObjective.transform.position);
+            character.SetFacing(leftObjective.transform.position);
+            if (character.attackedFromLocations.Capacity != 0)
+            {
+                character.FindClosestCover(character.attackedFromLocations[0]);
+            }
         }
         else
         {
             // Then left
             if (leftObjective.getControllingTeam() != character1.getTeam())
             {
-                character2.MoveChar(leftObjective.transform.position);
-                character2.SetFacing(leftObjective.transform.position);
-                character3.MoveChar(leftObjective.transform.position);
-                character3.SetFacing(leftObjective.transform.position);
+                character.MoveChar(leftObjective.transform.position);
+                character.SetFacing(leftObjective.transform.position);
             }
             // Then RIght
             if (rightObjective.getControllingTeam() != character1.getTeam())
             {
-                character2.MoveChar(rightObjective.transform.position);
-                character2.SetFacing(rightObjective.transform.position);
-                character3.MoveChar(rightObjective.transform.position);
-                character3.SetFacing(rightObjective.transform.position);
+                character.MoveChar(rightObjective.transform.position);
+                character.SetFacing(rightObjective.transform.position);
             }
         }
+    }
+}
 
-    } 
-    void Char1()
-    {
-        if (character1.getZone() == zone.BlueBase || character1.getZone() == zone.RedBase)
+/*
+if (character1.getZone() == zone.BlueBase || character1.getZone() == zone.RedBase)
+        {
             character1.setLoadout(loadout.SHORT);
-
+        }
         character1.FaceClosestWaypoint();
         if (middleObjective.getControllingTeam() != character1.getTeam())
         {
-            character2.MoveChar(leftObjective.transform.position);
-            character2.SetFacing(leftObjective.transform.position);
-            character2.FindClosestCover(visibleEnemyLocations);
+            character1.MoveChar(leftObjective.transform.position);
+            character1.SetFacing(leftObjective.transform.position);
+            character1.FindClosestCover(character1.attackedFromLocations[0]);
         }
         character1.isDoneMoving();
         if (character1.getHP() <= 40) 
@@ -121,10 +137,12 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
             character1.FindClosestItem();
         }
 
-    }
-    void Char2()
-    {
-        if (rightObjective.getControllingTeam() != character2.getTeam())
+
+
+
+
+
+if (rightObjective.getControllingTeam() != character2.getTeam())
         {
             character2.MoveChar(rightObjective.transform.position);
             character2.SetFacing(rightObjective.transform.position);
@@ -134,16 +152,9 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
             character2.MoveChar(middleObjective.transform.position);
             character2.SetFacing(middleObjective.transform.position);
         }
-        if (rightObjective.getControllingTeam() = character2.getTeam()) && if(rightObjective.getControllingTeam() = character2.getTeam());
+        if ((rightObjective.getControllingTeam() = character2.getTeam()) & (rightObjective.getControllingTeam() = character2.getTeam()));
         {
-            character2.FindClosestCover();
+            character2.FindClosestCover(character2.attackedFromLocations[0]);
             character2.isDoneMoving();
         }
-        
-    }
-    //Agresssive attacc Charachter
-    void Char3()
-    {
-        Debug.Log(visibleEnemyLocations);
-    }
-}
+*/
