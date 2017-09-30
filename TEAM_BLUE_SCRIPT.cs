@@ -33,13 +33,26 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
 	{
         // Debug.Log(character1.name + " " + character1.);
         //character1.FaceClosestWaypoint();
-        character1.SetFacing(new Vector3(-8f, 0, 8f));
-        character2.FaceClosestWaypoint();
-        character3.FaceClosestWaypoint();
+        character1.SetFacing(character1.FindClosestObjective());
+        character2.SetFacing(character2.FindClosestObjective());
+        character3.SetFacing(character3.FindClosestObjective());
 
-        character1.MoveChar(new Vector3());
-        character2.MoveChar(new Vector3(40.0f, 1.5f, 24.0f));
-        character3.MoveChar(new Vector3(-40.0f, 1.5f, -24.0f));
+        //set loadouts for each character
+        if (character1.getZone() == zone.BlueBase || character1.getZone() == zone.RedBase)
+            character1.setLoadout(loadout.MEDIUM);
+        if (character2.getZone() == zone.BlueBase || character2.getZone() == zone.RedBase)
+            character2.setLoadout(loadout.LONG);
+        if (character2.getZone() == zone.BlueBase || character2.getZone() == zone.RedBase)
+            character3.setLoadout(loadout.LONG);
+
+        character2.MoveChar(new Vector3(5.0f, 5.0f, 5.0f));
+        character3.MoveChar(new Vector3(5.0f, 5.0f, 5.0f));
+        character1.MoveChar(new Vector3(5.0f, 5.0f, 5.0f));
+        Debug.Log(character1.FindClosestObjective().magnitude);
+        if (character1.FindClosestObjective().magnitude<=0.0f)
+        {
+            character1.MoveChar(new Vector3(0.0f, 0.0f, 0.0f));
+        }
 
     } 
 }
