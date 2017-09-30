@@ -40,6 +40,7 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
     /*^^^^ DO NOT MODIFY ^^^^*/
 
     /* Your code below this line */
+    bool char1HasMoved = false;
     // Update() is called every frame
     void Update()
 	{
@@ -52,6 +53,9 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
         
 
     } 
+    /*
+    * function for all charachter to run every turn
+    */
     void basicUpdate(CharacterScript character)
     {
          //Set caracter loadouts, can only happen when the characters are at base.
@@ -61,15 +65,8 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
         {
             character.FaceClosestWaypoint();
         }
-
-        if(Vector3.Distance(character.getPrefabObject().transform.position, character.FindClosestItem().transform.position)<3) 
-        {
-            character.MoveChar(character.FindClosestItem().transform.position);
-            character.SetFacing(character.FindClosestItem().transform.position);   
-        }
-        
-        
     }
+
     void Char1()
     {
         //set loadout
@@ -80,10 +77,8 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
         character1.FaceClosestWaypoint();
 
         character1.isDoneMoving();
-        if (character1.getHP() <= 80) 
-        {
-            character1.MoveChar(character1.FindClosestItem().transform.position);
-            character1.SetFacing(character1.FindClosestItem().transform.position);
+        if(goToNearItem(character1)) {
+
         }
         else if (middleObjective.getControllingTeam() != character1.getTeam())
         {
@@ -109,11 +104,14 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
     }
     void Char2()
     {
-        Debug.Log(rightObjective.getControllingTeam());
+        //Debug.Log(rightObjective.getControllingTeam());
         //sendToCapture(character2);
         //character2.FaceClosestWaypoint();
         //character2.MoveChar(middleObjective.transform.position);
-        if (rightObjective.getControllingTeam() != character2.getTeam())
+        if(goToNearItem(character2)) {
+
+        }
+        else if (rightObjective.getControllingTeam() != character2.getTeam())
         {
             character2.MoveChar(rightObjective.transform.position);
             character2.SetFacing(rightObjective.transform.position);
@@ -137,8 +135,14 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
     //Agresssive attacc Charachter
     void Char3()
     {
-        character3.MoveChar(middleObjective.transform.position);
-            }
+        if(goToNearItem(character3)) {
+
+        }
+        else {
+            character3.MoveChar(middleObjective.transform.position);
+            character3.SetFacing(middleObjective.transform.position);
+        }
+    }
     void sendToCapture(CharacterScript character) 
     {
         // send other two to capture
@@ -168,6 +172,15 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
             
             
         }
+    }
+    bool goToNearItem(CharacterScript character) {
+        if(Vector3.Distance(character.getPrefabObject().transform.position, character.FindClosestItem().transform.position)<5) 
+        {
+            character.MoveChar(character.FindClosestItem().transform.position);
+            character.SetFacing(character.FindClosestItem().transform.position);
+            return true;   
+        }
+        return false;
     }
 }
 
