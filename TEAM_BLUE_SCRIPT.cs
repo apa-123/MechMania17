@@ -55,10 +55,7 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
     void basicUpdate(CharacterScript character)
     {
          //Set caracter loadouts, can only happen when the characters are at base.
-        if (character.getZone() == zone.BlueBase || character.getZone() == zone.RedBase)
-            character.setLoadout(loadout.LONG);
         
-
         // in the first couple of seconds we just scan around
         if (timer < 10)
         {
@@ -69,6 +66,28 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
     }
     void Char1()
     {
+        //set loadout
+        if (character1.getZone() == zone.BlueBase || character1.getZone() == zone.RedBase)
+        {
+            character1.setLoadout(loadout.SHORT);
+        }
+
+        character1.FaceClosestWaypoint();
+        if (middleObjective.getControllingTeam() != character1.getTeam())
+        {
+            character1.MoveChar(leftObjective.transform.position);
+            character1.SetFacing(leftObjective.transform.position);
+            if(character1.attackedFromLocations.Count>0) 
+            {
+                character1.FindClosestCover(character1.attackedFromLocations[0]);
+            }
+        }
+        character1.isDoneMoving();
+        if (character1.getHP() <= 40) 
+        {
+            character1.FindClosestItem();
+        }
+        /*
        // place sniper in position, run to cover if attacked
         if (character1.attackedFromLocations.Capacity == 0)
         {
@@ -79,10 +98,29 @@ public class TEAM_BLUE_SCRIPT : MonoBehaviour
         {
             character1.MoveChar(character1.FindClosestCover(character1.attackedFromLocations[0]));
         } 
+        */
     }
     void Char2()
     {
-        sendToCapture(character2);
+        //sendToCapture(character2);
+        if (rightObjective.getControllingTeam() != character2.getTeam())
+        {
+            character2.MoveChar(rightObjective.transform.position);
+            character2.SetFacing(rightObjective.transform.position);
+        }
+        if (middleObjective.getControllingTeam() != character2.getTeam())
+        {
+            character2.MoveChar(middleObjective.transform.position);
+            character2.SetFacing(middleObjective.transform.position);
+        }
+        if ((rightObjective.getControllingTeam() == character2.getTeam()) & (rightObjective.getControllingTeam() == character2.getTeam()));
+        {
+            if(character2.attackedFromLocations.Count>0) 
+            {
+                character2.FindClosestCover(character2.attackedFromLocations[0]);
+            }
+            character2.isDoneMoving();
+        }
     }
     //Agresssive attacc Charachter
     void Char3()
