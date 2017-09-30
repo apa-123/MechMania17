@@ -69,19 +69,7 @@ public class marker : MonoBehaviour
 
     void Char1()
     {   
-        //depnding on  how close the enemy is either stops or continues rotating 
-        foreach(Vector3 x in character1.visibleEnemyLocations)
-        {
-                if(Vector3.Distance(character1.getPrefabObject().transform.position, x)<5)
-                {
 
-                }
-                else {
-                    character1.rotateAngle(120.0f);
-                    character1.MoveChar(leftObjective.transform.position);
-                }
-
-        }
         //set loadout
         if (character1.getZone() == zone.BlueBase || character1.getZone() == zone.RedBase)
         {
@@ -92,17 +80,16 @@ public class marker : MonoBehaviour
         if(goToNearItem(character1)) {
 
         }
-        else if (middleObjective.getControllingTeam() != character1.getTeam())
+        else if (leftObjective.getControllingTeam() != character1.getTeam()) //changed from middleObjective to leftObjective
         {
             character1.MoveChar(leftObjective.transform.position);
             character1.SetFacing(leftObjective.transform.position);
             //finds closest cover regardless of whether it is attacked or not
-            if(character1.attackedFromLocations.Count>0) 
-            {
-                character1.FindClosestCover(character1.attackedFromLocations[0]);
-            }
+            //if(character1.attackedFromLocations.Count>0) 
+            character1.FindClosestCover(character1.attackedFromLocations[0]);
         }
         else {
+            character1.FindClosestCover(character1.attackedFromLocations[0]);
 
         }
             /**if(character1.attackedFromLocations.Count>0) 
@@ -122,6 +109,19 @@ public class marker : MonoBehaviour
             character1.MoveChar(character1.FindClosestCover(character1.attackedFromLocations[0]));
         } 
         */
+        /*depending on  how close the enemy is either stops or continues rotating 
+        foreach(Vector3 x in character1.visibleEnemyLocations)
+        {
+                if(Vector3.Distance(character1.getPrefabObject().transform.position, x)<5)
+                {
+
+                }
+                else {
+                    character1.rotateAngle(120.0f);
+                    character1.MoveChar(leftObjective.transform.position);
+                }
+
+        }
     }
     void Char2()
     {
